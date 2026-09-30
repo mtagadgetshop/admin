@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MTA Gadget Shop Admin</title><link rel="stylesheet" href="style.css"></head><body>
+<header>MTA Gadget Shop <span>Admin</span></header><main>
+<section class="panel"><div class="top"><div><h1 id="formTitle">নতুন প্রোডাক্ট</h1><p>Main image + up to 5 total review/preview media. YouTube video counts as one media item.</p></div><button id="resetBtn" class="light" type="button">নতুন</button></div>
+<form id="form"><input type="hidden" id="editId">
+<label>প্রোডাক্টের নাম<input id="title" required></label>
+<div class="two"><label>বর্তমান দাম<input id="price" placeholder="500 অথবা Free"></label><label>আগের দাম <small>(না দিলে Discount দেখাবে না)</small><input id="oldPrice" placeholder="1000"></label></div>
+<div class="hint">আগের দাম দিলে Discount % অটোমেটিক হিসাব হবে।</div>
+<label>বিবরণ / Description<textarea id="description" rows="5"></textarea></label>
+<div class="uploadBox"><div class="labelTitle">মূল ছবি</div><input id="mainFile" type="file" accept="image/*" hidden><button type="button" class="uploadBtn" id="mainChoose">গ্যালারি থেকে ছবি দিন</button><div id="mainPreview" class="mini"></div><input id="mainUrl" type="hidden"></div>
+<div class="uploadBox"><div class="labelTitle">Review / Preview Screenshots — সর্বোচ্চ ৫টি ছবি</div><input id="previewFiles" type="file" accept="image/*" multiple hidden><button type="button" class="uploadBtn" id="previewChoose">＋ Gallery থেকে Preview ছবি দিন</button><div id="previewMini" class="miniRow"></div><input id="previewUrls" type="hidden"><div class="counter">Preview images: <b id="previewCount">0/5</b></div></div>
+<label>YouTube Review / Preview Video <small>(ঐচ্ছিক, সর্বোচ্চ ১টি; মোট media সীমা ৫)</small><input id="youtube" placeholder="https://youtube.com/watch?v=..."></label>
+<div class="mediaLimit">Total Preview Media: <b id="mediaCount">0/5</b></div>
+<label>Buy / Order URL<input id="buyUrl" type="url" placeholder="https://..."></label>
+<div class="actions"><button class="save" type="submit">Save / Post</button><button class="delete" id="deleteBtn" type="button">Delete</button></div>
+</form></section>
+<section class="panel"><div class="top"><div><h2>Posted Products</h2><p>এখান থেকে Edit বা Delete করতে পারবেন।</p></div></div><div id="list"></div></section>
+</main><div id="toast"></div>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script><script src="script.js"></script></body></html>
