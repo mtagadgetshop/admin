@@ -26,6 +26,25 @@
 <div class="uploadBox"><div class="labelTitle">Review / Preview Screenshots — সর্বোচ্চ ৫টি ছবি</div><input id="previewFiles" type="file" accept="image/*" multiple hidden><button type="button" class="uploadBtn" id="previewChoose">＋ Gallery থেকে Preview ছবি দিন</button><div id="previewMini" class="miniRow"></div><input id="previewUrls" type="hidden"><div class="counter">Preview images: <b id="previewCount">0/5</b></div></div>
 <label>YouTube Review / Preview Video <small>(ঐচ্ছিক, সর্বোচ্চ ১টি; মোট media সীমা ৫)</small><input id="youtube" placeholder="https://youtube.com/watch?v=..."></label>
 <div class="mediaLimit">Total Preview Media: <b id="mediaCount">0/5</b></div>
+
+<div class="deliverySettings">
+  <div class="deliveryTitle">Delivery Charge for This Product</div>
+  <div class="deliveryGrid">
+    <label>Inside Dhaka City
+      <input id="dhakaDelivery" type="number" min="0" step="1" value="90" placeholder="90">
+    </label>
+    <label>Outside Dhaka City
+      <input id="outsideDelivery" type="number" min="0" step="1" value="150" placeholder="150">
+    </label>
+  </div>
+  <label>Extra delivery charge for each additional same product <small>(optional)</small>
+    <input id="extraDelivery" type="number" min="0" step="1" placeholder="Leave blank to show the normal multiple-item notice">
+  </label>
+  <div class="deliveryHint">
+    If you enter an amount above, the customer will see that amount as an additional delivery charge for each extra unit of the same product. If left blank, the normal multiple-item notice will be shown.
+  </div>
+</div>
+
 <label>Buy / Order URL<input id="buyUrl" type="url" placeholder="https://..."></label>
 <div class="actions"><button class="save" type="submit">Save / Post</button><button class="delete" id="deleteBtn" type="button">Delete</button></div>
 </form></section>
