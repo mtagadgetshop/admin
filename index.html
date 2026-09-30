@@ -1,5 +1,20 @@
 <!doctype html>
 <html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MTA Gadget Shop Admin</title><link rel="stylesheet" href="style.css"></head><body>
+<div id="adminLock" class="admin-lock">
+  <div class="lock-card">
+    <div class="lock-icon">⚙</div>
+    <div class="lock-kicker">MTA GADGET SHOP</div>
+    <h1>Admin Panel</h1>
+    <p>Enter your admin password to continue.</p>
+    <div class="lock-field">
+      <input id="adminPassword" type="password" inputmode="numeric" autocomplete="off"
+             placeholder="Enter password" maxlength="32">
+      <button id="togglePassword" type="button">Show</button>
+    </div>
+    <button id="adminLoginBtn" class="lock-login" type="button">Continue</button>
+    <div id="loginError" class="login-error" aria-live="polite"></div>
+  </div>
+</div>
 <header>MTA Gadget Shop <span>Admin</span></header><main>
 <section class="panel"><div class="top"><div><h1 id="formTitle">নতুন প্রোডাক্ট</h1><p>Main image + up to 5 total review/preview media. YouTube video counts as one media item.</p></div><button id="resetBtn" class="light" type="button">নতুন</button></div>
 <form id="form"><input type="hidden" id="editId">
@@ -16,4 +31,34 @@
 </form></section>
 <section class="panel"><div class="top"><div><h2>Posted Products</h2><p>এখান থেকে Edit বা Delete করতে পারবেন।</p></div></div><div id="list"></div></section>
 </main><div id="toast"></div>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script><script src="script.js"></script></body></html>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script><script src="script.js"></script><script>
+(function () {
+  const ADMIN_PASSWORD = "121345";
+  const lock = document.getElementById("adminLock");
+  const input = document.getElementById("adminPassword");
+  const loginBtn = document.getElementById("adminLoginBtn");
+  const toggleBtn = document.getElementById("togglePassword");
+  const error = document.getElementById("loginError");
+
+  function unlock() {
+    if (input.value === ADMIN_PASSWORD) {
+      sessionStorage.setItem("mta_admin_unlocked", "1");
+      lock.remove();
+    } else {
+      error.textContent = "Incorrect password. Please try again.";
+      input.classList.add("shake");
+      setTimeout(() => input.classList.remove("shake"), 350);
+      input.select();
+    }
+  }
+
+  loginBtn.addEventListener("click", unlock);
+  input.addEventListener("keydown", e => { if (e.key === "Enter") unlock(); });
+  toggleBtn.addEventListener("click", () => {
+    const show = input.type === "password";
+    input.type = show ? "text" : "password";
+    toggleBtn.textContent = show ? "Hide" : "Show";
+  });
+})();
+</script>
+</body></html>
